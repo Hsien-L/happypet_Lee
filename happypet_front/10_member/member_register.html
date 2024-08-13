@@ -58,7 +58,7 @@
             </div>
         </div>
     </header>
-    <!-- Modal -->
+    <!-- 會員登入Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -69,12 +69,12 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">電子信箱 / e-mail :</label>
-                            <input type="email" class="form-control" id="recipient-name">
+                            <label for="recipient-name1" class="col-form-label">電子信箱 / e-mail :</label>
+                            <input type="email" class="form-control" id="recipient-name1">
                         </div>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">密碼 / password :</label>
-                            <input type="password" class="form-control" id="recipient-name">
+                            <label for="recipient-name2" class="col-form-label">密碼 / password :</label>
+                            <input type="password" class="form-control" id="recipient-name2">
                         </div>
                     </form>
                 </div>
@@ -87,7 +87,8 @@
             </div>
         </div>
     </div>
-    <!-- Modal end-->
+    <!-- 會員登入Modal end-->
+
     <!-- Header end -->
     <!-- Header end -->
     <!-- Header end -->
@@ -106,15 +107,16 @@
             </div>
             <div class="col-md-6">
                 <label for="validationCustom02" class="form-label">聯絡電話 (Phone Number)</label>
-                <input name="cellphone" type="tel" class="form-control" id="validationCustom02"
-                    placeholder="0900-000000" required>
+                <input name="cellphone" type="tel" class="form-control" id="validationCustom02" placeholder="0900123456"
+                    required>
                 <div class="valid-feedback">
                     完成!
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="" class="form-label">密碼 (Password)</label>
-                <input name="mypassword" type="password" class="form-control" id="" value="" required>
+                <input name="mypassword" type="password" class="form-control" required minlength="8" maxlength="16"
+                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$">
                 <div class="invalid-feedback">
                     請輸入8~16個字元且包含數字、英文字母大小寫及特殊符號的密碼
                 </div>
@@ -154,7 +156,7 @@
                     </label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input name="sex" class="form-check-input" type="radio" id="flexRadioDefault2" value="其他" checked>
+                    <input name="sex" class="form-check-input" type="radio" id="flexRadioDefault3" value="其他" checked>
                     <label class="form-check-label" for="flexRadioDefault3">
                         其他
                     </label>
@@ -173,7 +175,7 @@
             </div>
             <div class="col-12">
                 <button class="btn btn-light" type="reset">取消</button>
-                <button class="btn btn-success" type="button" id="btnRegister">送出</button>
+                <button class="btn btn-success" type="submit" id="btnRegister">送出</button>
             </div>
         </form>
         <!-- 註冊成功Modal -->
@@ -193,23 +195,7 @@
         </div>
         <!-- 註冊Modal end-->
 
-        <script>
-            (function () {
-                'use strict'
-                var forms = document.querySelectorAll('.needs-validation')
-                Array.prototype.slice.call(forms)
-                    .forEach(function (form) {
-                        form.addEventListener('submit', function (event) {
-                            if (!form.checkValidity()) {
-                                event.preventDefault()
-                                event.stopPropagation()
-                            }
 
-                            form.classList.add('was-validated')
-                        }, false)
-                    })
-            })()
-        </script>
 
     </div>
     <br><br><br><br><br>
@@ -256,7 +242,44 @@
     <!--------------- footer end---------------->
     <!--------------- footer end---------------->
     <!--------------- footer end---------------->
-    <script src="../js/member_register.js"></script>
+
+    //前端bootstrap驗證的JS，減輕伺服器負擔
+    <script>
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+
+                        // 獲取密碼和確認密碼欄位的值
+                        var password = form.querySelector('input[name="mypassword"]').value;
+                        var confirmPassword = form.querySelector('input[name="mypassword_conf"]').value;
+
+                        // 檢查密碼和確認密碼是否一致
+                        if (password !== confirmPassword) {
+                            // 如果不一致，設置自定義錯誤信息
+                            var confirmPasswordField = form.querySelector('input[name="mypassword_conf"]');
+                            confirmPasswordField.setCustomValidity('密碼不匹配，請重新輸入');
+                        } else {
+                            // 如果一致，清除錯誤信息
+                            var confirmPasswordField = form.querySelector('input[name="mypassword_conf"]');
+                            confirmPasswordField.setCustomValidity('');
+                        }
+
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+
+    //引用註冊功能的後端JS檔
+    <!-- <script src="../js/member_register.js"></script> -->
 </body>
 
 </html>

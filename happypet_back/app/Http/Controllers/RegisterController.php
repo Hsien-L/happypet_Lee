@@ -30,7 +30,7 @@ class RegisterController extends Controller
             //     return response()->json(["error"=>"註冊失敗"]);
             // }
             // $aa = DB::select('select * from user_info');
-            Log::info('userinfo',["info",$aa]);
+            Log::info('userinfo',["info",$sign_in]);
         } catch(\Exception $e) {
             Log::error($e->getMessage());
             return response()->json(["error"=>"註冊失敗"]);

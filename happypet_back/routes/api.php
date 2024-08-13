@@ -61,4 +61,5 @@ Route::post('/product_back/detail/show',function(Request $request) {
 // php artisan make:controller DetailProductInsertController
 Route::post('/product_back/detail/create',[DetailProductInsertController::class,'store']);
 
+//會員註冊
 Route::post('/member_register', RegisterController::class);
