@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 
 
 use App\Http\Controllers\SeriesProductInsertController; 
@@ -63,3 +64,6 @@ Route::post('/product_back/detail/create',[DetailProductInsertController::class,
 
 //會員註冊
 Route::post('/member_register', RegisterController::class);
+
+//會員登入
+Route::post('/member_login', [LoginController::class, 'login']);
