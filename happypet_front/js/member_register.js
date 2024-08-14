@@ -1,3 +1,4 @@
+
 document.getElementById('btnRegister').onclick = (event) => {
     event.preventDefault();
 
@@ -6,7 +7,7 @@ document.getElementById('btnRegister').onclick = (event) => {
 
     // 手動觸發表單驗證
     form.classList.add('was-validated');
-    
+
     // 確認表單驗證成功後才執行API呼叫
     if (form.checkValidity()) {
         let formData = new FormData(form);
@@ -15,22 +16,23 @@ document.getElementById('btnRegister').onclick = (event) => {
             method: 'post',
             body: formData
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`伺服器錯誤(fetch回傳有問題): ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (data.message) {
-                showModel(data.message, 'success');
-            } else {
-                showModel(data.error, 'error');
-            }
-        })
-        .catch(error => {
-            showModel(`發生錯誤: ${error.message}`, 'error');
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`伺服器錯誤(fetch回傳有問題): ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                if (data.message) {
+                    showModel(data.message, 'success');
+
+                } else {
+                    showModel(data.error, 'error');
+                }
+            })
+            .catch(error => {
+                showModel(`發生錯誤: ${error.message}`, 'error');
+            });
     }
 
     function showModel(message, type) {
@@ -38,7 +40,14 @@ document.getElementById('btnRegister').onclick = (event) => {
         alert_message.innerText = message;
         alert_message.classList.remove('text-success', 'text-danger');
         alert_message.classList.add(type === 'success' ? 'text-success' : 'text-danger');
+        if (type === 'success') {
+            setTimeout(() => {
+                window.location.href = '../00_index/index.html'; // 更改為你的登入頁面路徑
+            }, 3000); // 3 秒鐘後重導
+        }
     }
+
+
 }
 
 // btnRegister.onclick = (event) => {

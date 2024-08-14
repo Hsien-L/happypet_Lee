@@ -107,3 +107,7 @@ footer a,footer i{
        display: none;
     }
 }
+
+.was-validated .form-control:valid {
+    background-image: none; /* 移除默認的打勾符號 */
+}
