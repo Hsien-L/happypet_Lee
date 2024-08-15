@@ -1,9 +1,10 @@
+
 // let uid = localStorage.getItem('uid');
 let uid = 101;
 
 function show(mymypetdata) {
 
-    mypet_card.innerHTML = '';
+    mypet_card.innerHTML = ''; //清空，重新生成
 
     // <div class="col">
     //     <div class="card h-100">
@@ -29,12 +30,12 @@ function show(mymypetdata) {
                 <div class="card h-100">
                     <img src="../../happypet_back/storage/app/public/${element.pet_headphoto}" class="card-img-top" alt="..."/>
                     <div class="card-body">
-                        <h5 class="card-title" id="mypet_name">${element.pet_name}</h5>
+                        <h5 class="card-title">${element.pet_name}</h5>
                         <p class="card-text">品種：${element.pet_variety}</p>
                         <p class="card-text">生日：${element.pet_birthday}</p>  
                     </div>
                     <div class="card-footer d-flex justify-content-center gap-2">
-                        <button class="btn btn-secondary btn-sm" data-pid="${element.pid}" onclick="showModel(this)">查看詳情</button>
+                        <button class="btn btn-secondary btn-sm" data-pid="${element.pid}" onclick="showModal(this)">查看詳情</button>
                         <button class="btn btn-secondary btn-sm">編輯</button>
                     </div>
                 </div>
@@ -73,3 +74,4 @@ function mypet_info_card() {
 }
 
 mypet_info_card()
+

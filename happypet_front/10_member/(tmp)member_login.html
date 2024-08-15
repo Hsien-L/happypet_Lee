@@ -67,7 +67,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formLoginCustomer" class="row g-3" novalidate >
+                    <form id="formLoginCustomer" class="row g-3" novalidate>
                         <div class="col-md-12">
                             <label for="" class="form-label">電子信箱 / e-mail :</label>
                             <input name="login_email" type="email" class="form-control" required>
@@ -77,8 +77,8 @@
                         </div>
                         <div class="col-md-12">
                             <label for="" class="form-label">密碼 / password :</label>
-                            <input name="login_password" type="password" class="form-control" required minlength="8" maxlength="16"
-                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$">
+                            <input name="login_password" type="password" class="form-control" required minlength="8"
+                                maxlength="16" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$">
                             <div class="invalid-feedback">
                                 請輸入8~16個字元且包含數字、英文字母大小寫及特殊符號的密碼
                             </div>
@@ -118,11 +118,88 @@
     <!-- Header end -->
 
     <div class="container mt-3">
-        <h2 class="text-center mb-3">測試區</h2>
+        <h2 class="text-center mb-3" id="apple">測試區</h2>
+        <!-- 會員查看我的寵物資料Modal -->
+        <form id="formMyPet">
+            <div class="d-flex justify-content-center">
+                <img class="pet-headphoto" src="../img/10_member/pet-money.jpg" alt="">
+            </div>
+
+            <div class="mb-1">
+                <label for="pet-name" class="col-form-label">寵物名字</label>
+                <input type="text" class="form-control" id="pet-name" name="pet_name" value="柴寶" disabled >
+            </div>
+            <div class="mb-1">
+                <label for="" class="col-form-label">寵物種類</label>
+                <select class="form-select" aria-label="Default select example" name="pet_species" disabled>
+                    <option value="">請選擇</option>
+                    <option value="狗" selected>狗</option>
+                    <option value="貓">貓</option>
+                </select>
+            </div>
+            <div class="mb-1">
+                <label for="" class="col-form-label">品種</label>
+                <input type="text" class="form-control" id="pet-variety" name="pet_variety" value="柴犬" disabled>
+            </div>
+            <div class="mb-1">
+                <label for="" class="col-form-label">體重</label>
+                <input type="number" class="form-control" id="pet-weight" name="pet_weight" value="15.8" disabled>
+            </div>
+            <div class="mb-1">
+                <label for="" class="col-form-label">毛髮類型</label>
+                <select class="form-select" aria-label="Default select example" name="pet_fur" disabled>
+                    <option value="">請選擇</option>
+                    <option value="長毛">長毛</option>
+                    <option value="多層毛" selected>多層毛</option>
+                    <option value="短毛">短毛</option>
+                </select>
+            </div>
+            <div class="mb-1">
+                <label for="" class="col-form-label">生日</label>
+                <input type="text" class="form-control" id="pet-birthday" name="pet_birthday" value="2024/08/01" disabled>
+            </div>
+            <div class="mb-1">
+                <label for="" class="col-form-label">性別</label>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="flexRadioDefault1" name="pet_gender" value="公" disabled>
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        公
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input checked class="form-check-input" type="radio" id="flexRadioDefault2" name="pet_gender" 
+                        value="母" disabled>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                        母
+                    </label>
+                </div>
+            </div>
+            <div class="mb-1">
+                <label for="recipient-name" class="col-form-label">節育狀態</label>
+                <select class="form-select" aria-label="Default select example" name="neutered" disabled>
+                    <option selected value="">請選擇</option>
+                    <option value="已結紮">已結紮</option>
+                    <option value="未結紮">未結紮</option>
+                    <option value="不清楚">不清楚</option>
+                </select>
+            </div>
+            <div class="mb-1">
+                <label for="" class="col-form-label">備註</label>
+                <textarea class="form-control" rows="3" name="others" placeholder="若有其他特殊狀況可以在此告知我們" disabled></textarea>
+            </div>
+            <hr>
+            <div class="text-center">
+                <button type="button" class="btn btn-secondary">離開</button>
+                <button type="button" class="btn btn-success" id="btnAddPet">編輯</button>
+            </div>
+        </ㄑ>
+    </div>
+
+
+    <!-- 會員查看我的寵物資料Modal end-->
 
 
 
-        
     </div>
 
     <br><br><br><br><br><br><br><br><br><br><br>
@@ -194,7 +271,8 @@
 
     <!-- 引用登入功能的後端JS檔 -->
     <script src="../js/member_login.js"></script>
-    <script src="../js/member_add_pet.js"></script>
+    <!-- <script src="../js/member_add_pet.js"></script> -->
+    <script src="../js/(tmp)catch_pet_info.js"></script>
 
 </body>
 

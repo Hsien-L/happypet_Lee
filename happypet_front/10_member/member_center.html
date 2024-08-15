@@ -192,7 +192,7 @@
 
                     <div class="row row-cols-1 row-cols-md-4 g-4" id="mypet_card">
 
-                        <div class="col">
+                        <!-- <div class="col">
                             <div class="card h-100">
                                 <img src="../img/10_member/pet-money.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -201,12 +201,11 @@
                                     <p class="card-text">生日：2020/08/01</p>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center gap-2">
-                                    <button class="btn btn-secondary btn-sm" data-pid="1">查看詳情</button>
-                                    <button class="btn btn-secondary btn-sm">編輯</button>
+                                    <button class="btn btn-secondary btn-sm">查看詳情</button>
+                                    <button class="btn btn-secondary btn-sm" data-bs-target="#myPetDetailModal" >編輯</button>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col">
                             <div class="card h-100">
                                 <img src="../img/10_member/pet-kani.jpg" class="card-img-top" alt="...">
@@ -238,7 +237,7 @@
                                     <button class="btn btn-secondary btn-sm">編輯</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <a data-bs-toggle="modal" data-bs-target="#addPetModal" href="#" class="card-add">
                             <div class="col card h-100">
@@ -256,7 +255,7 @@
                     </div>
 
                     <!-- 會員查看我的寵物資料Modal -->
-                    <div class="modal fade" id="myPetDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="myPetDetailModal" tabindex="-1" aria-labelledby="myPetDetailModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -264,7 +263,7 @@
                                     通知框
                                 </div>
                                 <div class="modal-body text-center">
-                                    <p id="alert_message"></p>
+                                    <p id=""></p>
                                 </div>
                             </div>
                         </div>
@@ -297,9 +296,9 @@
                                             <label for="" class="col-form-label">寵物種類</label>
                                             <select class="form-select" aria-label="Default select example"
                                                 name="pet_species">
-                                                <option selected>點此選擇</option>
-                                                <option value="1">狗</option>
-                                                <option value="2">貓</option>
+                                                <option selected>請選擇</option>
+                                                <option value="狗">狗</option>
+                                                <option value="貓">貓</option>
                                             </select>
                                         </div>
                                         <div class="mb-1">
@@ -314,7 +313,7 @@
                                             <label for="" class="col-form-label">毛髮類型</label>
                                             <select class="form-select" aria-label="Default select example"
                                                 name="pet_fur">
-                                                <option selected>點此選擇</option>
+                                                <option selected>請選擇</option>
                                                 <option value="長毛">長毛</option>
                                                 <option value="多層毛">多層毛</option>
                                                 <option value="短毛">短毛</option>
@@ -370,7 +369,7 @@
                     <!-- 新增寵物 Modal End-->
 
                     <!-- 新增後通知框Modal -->
-                    <div class="modal fade" id="add_or_not_Modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="add_or_not_Modal" tabindex="-1" aria-labelledby="addAlertModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -540,9 +539,9 @@
 
     <!-- 引用登入功能的後端JS檔 -->
     <script src="../js/member_login.js"></script>
-    <!-- 引用新增寵物功能的後端JS檔 -->
+    <!-- 引用新增寵物功能的JS檔 -->
     <script src="../js/member_add_pet.js"></script>
-
+    <!-- 引用我的寵物卡片功能的S檔 -->
     <script src="../js/mypet_info_card.js"></script>
 
 

@@ -30,7 +30,7 @@ class AddPetController extends Controller
                 'pet_gender' => $request->input('pet_gender'),
                 'pet_birthday' => $request->input('pet_birthday'),
                 'neutered' => $request->input('neutered'),
-                'pet_headphoto' => $pet_headphoto_path,  // 確保這裡是字符串
+                'pet_headphoto' => $pet_headphoto_path,  // 確保這裡是字串
                 'others' => $request->input('others')
                 ]);
 
