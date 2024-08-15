@@ -8,7 +8,9 @@
 
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/header_footer.css" />
+    <link rel="stylesheet" href="../css/member_center.css">
     <script src="../js/bootstrap.bundle.js"></script>
+    <script src="../js/jquery-3.7.1.js"></script>
 
     <!-- 使用CDN引入bootstrap-icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -65,7 +67,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formLoginCustomer" class="row g-3 needs-validation" novalidate >
+                    <form id="formLoginCustomer" class="row g-3" novalidate >
                         <div class="col-md-12">
                             <label for="" class="form-label">電子信箱 / e-mail :</label>
                             <input name="login_email" type="email" class="form-control" required>
@@ -116,7 +118,8 @@
     <!-- Header end -->
 
     <div class="container mt-3">
-        <h2 class="text-center mb-3">會員登入</h2>
+        <h2 class="text-center mb-3">測試區</h2>
+
 
 
         
@@ -169,11 +172,11 @@
     <!--------------- footer end---------------->
     <!--------------- footer end---------------->
 
-    <!-- 前端表單提交驗證JS -->
+    <!-- 登入表單提交前端驗證JS -->
     <script>
         (function () {
             'use strict'
-            var forms = document.querySelectorAll('.needs-validation')
+            var forms = document.getElementById('formLoginCustomer')
             Array.prototype.slice.call(forms)
                 .forEach(function (form) {
                     form.addEventListener('submit', function (event) {
@@ -183,15 +186,15 @@
                             event.stopPropagation()
                         }
 
-                        // form.classList.add('was-validated')
+                        form.classList.add('was-validated')
                     }, false)
                 })
         })()
     </script>
 
-    <!-- 引用註冊功能的後端JS檔 -->
+    <!-- 引用登入功能的後端JS檔 -->
     <script src="../js/member_login.js"></script>
-
+    <script src="../js/member_add_pet.js"></script>
 
 </body>
 

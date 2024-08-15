@@ -6,10 +6,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AddPetController;
+use App\Http\Controllers\MyPetCardController;
 
 
 use App\Http\Controllers\SeriesProductInsertController; 
 use App\Http\Controllers\DetailProductInsertController; 
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
@@ -51,7 +54,7 @@ Route::post('/product_back/detail/show',function(Request $request) {
     $existPdSeries = DB::table('product_series')
     ->select('series_id','series_name')
     ->where('series_id',$pdSeries)
-    ->first(); //// 使用 first() 取得單一結果
+    ->first(); // 使用 first() 取得單一結果
     if($existPdSeries){
 
         return response()->json($existPdSeries);
@@ -67,3 +70,9 @@ Route::post('/member_register', RegisterController::class);
 
 //會員登入
 Route::post('/member_login', [LoginController::class, 'login']);
+
+//會員新增寵物
+Route::post('/member_add_pet', [AddPetController::class, 'add_pet']);
+
+//呈現我的寵物資料
+Route::post('/member_mypet', [MyPetCardController::class, 'mypet_card']);
