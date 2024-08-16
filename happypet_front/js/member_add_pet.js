@@ -1,3 +1,4 @@
+//串接新增寵物API
 document.getElementById('btnAddPet').onclick = (event) => {
     event.preventDefault();
 

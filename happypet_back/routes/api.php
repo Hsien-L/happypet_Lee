@@ -6,8 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AddPetController;
-use App\Http\Controllers\MyPetCardController;
+use App\Http\Controllers\MyPetController;
 
 
 use App\Http\Controllers\SeriesProductInsertController; 
@@ -72,7 +71,10 @@ Route::post('/member_register', RegisterController::class);
 Route::post('/member_login', [LoginController::class, 'login']);
 
 //會員新增寵物
-Route::post('/member_add_pet', [AddPetController::class, 'add_pet']);
+Route::post('/member_add_pet', [MyPetController::class, 'add_pet']);
 
-//呈現我的寵物資料
-Route::post('/member_mypet', [MyPetCardController::class, 'mypet_card']);
+//查看我的寵物資料
+Route::post('/member_mypet', [MyPetController::class, 'mypet_card']);
+
+//編輯我的寵物資料
+Route::post('/member_edit_pet', [MyPetController::class, 'edit_petinfo']);
