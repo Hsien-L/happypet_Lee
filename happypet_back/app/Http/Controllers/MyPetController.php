@@ -74,21 +74,41 @@ class MyPetController extends Controller
     }
 
     function edit_petinfo(Request $request){
-        // echo $request->input('formData')->input('pet_name');
+
+        try {
+
         $pid=$request->input("pid");
         $pet_name=$request->input('pet_name');
-        // return response()->json(['message'=>$pet_name]);
-        // try {
-        //    $pet_headphoto = $request->file('pet_headphoto');
+        $pet_species=$request->input('pet_species');
+        $pet_variety=$request->input('pet_variety');
+        $pet_weight=$request->input('pet_weight');
+        $pet_fur=$request->input('pet_fur');
+        $pet_gender=$request->input('pet_gender');
+        $pet_birthday=$request->input('pet_birthday');
+        $neutered=$request->input('neutered');
+        $others=$request->input('others');
 
-        //    if($request->file('pet_headphoto')) {
+        $pet_headphoto = $request->file('pet_headphoto');
+        if ($pet_headphoto) {
+            $bindata = file_get_contents($pet_headphoto);
+        } else {
+            // 沒有上傳新照片，從資料庫中查找舊的照片
+            $currentPhoto = DB::table('pet_info')->where('pid', $pid)->value('pet_headphoto');
+            if ($currentPhoto) {
+                $bindata = $currentPhoto;
+            } else {
+                $bindata = null; // 如果資料庫中也沒有照片，設置為 NULL
+            }
+        }
+        // if($request->file('pet_headphoto')) {
 
-        //         $bindata = file_get_contents($pet_headphoto);
+        //      $bindata = file_get_contents($pet_headphoto);
 
-        //    } else {
+        // } else {
 
-        //        $bindata = null; // 如果沒有上傳圖片，可以設定為 null 或空值
-        //    }
+        //     $bindata = null; // 如果沒有上傳圖片，可以設定為 null 或空值
+        // }
+
 
         // 更新資料庫
            $edit_pet = DB::table('pet_info')
@@ -96,29 +116,30 @@ class MyPetController extends Controller
            ->update([
                'pet_name' => $request->input('pet_name'),
                'pet_species' => $request->input('pet_species'),
-            //    'pet_weight' => $request->input('pet_weight'),
-            //    'pet_variety' => $request->input('pet_variety'),
-            //    'pet_fur' => $request->input('pet_fur'),
-            //    'pet_gender' => $request->input('pet_gender'),
-            //    'pet_birthday' => $request->input('pet_birthday'),
-            //    'neutered' => $request->input('neutered'),
-            //    'pet_headphoto' => $bindata,
-            //    'others' => $request->input('others')
+               'pet_weight' => $request->input('pet_weight'),
+               'pet_variety' => $request->input('pet_variety'),
+               'pet_fur' => $request->input('pet_fur'),
+               'pet_gender' => $request->input('pet_gender'),
+               'pet_birthday' => $request->input('pet_birthday'),
+               'neutered' => $request->input('neutered'),
+               'pet_headphoto' => $bindata,
+               'others' => $request->input('others')
                ]);
 
-               return response()->json(['message'=>'OK']);
-        //    if ($edit_pet) {
-        //        // 如果更新成功，返回成功消息
-        //        return response()->json(["message" => "資料儲存成功！"]);
-        //    } else {
-        //        // 如果插入失敗，返回錯誤消息
-        //        return response()->json(["error" => "更新失敗，再試一次"]);
-        //    }
-    //    } catch (\Exception $e) {
-    //        // 捕獲異常，返回錯誤消息
-    //        Log::error($e->getMessage());
-    //        return response()->json(["error" => "更新寵物資料過程中發生錯誤(MyPetController,'edit_petinfo')"]);
-    //    }
+            //    return response()->json(['message'=>'OK']);
+           if ($edit_pet) {
+               // 如果更新成功，返回成功消息
+               return response()->json(["message" => "新資料儲存成功！"]);
+           } else {
+               // 如果都沒有資料異動或異動失敗，就回報這個訊息
+               // 文字回報這樣給使用者，體驗會比較好 
+               return response()->json(["error" => "資料已儲存"]);
+           }
+       } catch (\Exception $e) {
+           // 捕獲異常，返回錯誤消息
+           Log::error($e->getMessage());
+           return response()->json(["error" => "更新寵物資料過程中發生錯誤(MyPetController,'edit_petinfo')"]);
+       }
     }
     
 }

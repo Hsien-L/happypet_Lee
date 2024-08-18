@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MyPetController;
-
+use App\Http\Controllers\UserinfoController;
 
 use App\Http\Controllers\SeriesProductInsertController; 
 use App\Http\Controllers\DetailProductInsertController; 
@@ -78,3 +78,9 @@ Route::post('/member_mypet', [MyPetController::class, 'mypet_card']);
 
 //編輯我的寵物資料
 Route::post('/member_edit_pet', [MyPetController::class, 'edit_petinfo']);
+
+//查看會員資料
+Route::post('/member_userinfo', [UserinfoController::class, 'show_userinfo']);
+
+//編輯會員資料
+Route::post('/member_userinfo_update', [UserinfoController::class, 'edit_userinfo']);

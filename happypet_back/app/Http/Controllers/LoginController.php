@@ -23,7 +23,7 @@ class LoginController extends Controller
                 return response()->json([
                     'success' => true,
                     'message' => '登入成功！',
-                    'user' => $user,
+                    'uid' => $user->uid,
                 ], 200);
             } else {
                 // Password does not match or user does not exist

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 好寵你 | 寵物全方位服務網站 </title>
+    <title> 好寵你 | 寵物全方位服務網站 — 會員中心 </title>
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/header_footer.css">
@@ -130,36 +130,37 @@
                     href="#member-record" role="tab" aria-controls="member-record">歷史訂單</a>
                 <a class="list-group-item list-group-item-action" id="member-password-reset-list" data-bs-toggle="list"
                     href="#member-password-reset" role="tab" aria-controls="member-password-reset">重設密碼</a>
-                <a class="list-group-item list-group-item-action" id="member-logout-list" data-bs-toggle="list"
-                    href="#member-logout" role="tab" aria-controls="member-logout">登出</a>
+                <a class="list-group-item list-group-item-action" 
+                    href="#" role="tab" aria-controls="member-logout" id="btnLogout">登出</a>
             </div>
         </div>
+
         <div class="col-8 col-md-9">
             <div class="tab-content" id="nav-tabContent">
                 <div class="container-fluid tab-pane fade" id="member-edit" role="tabpanel"
                     aria-labelledby="member-edit-list">
                     <h4 class="member-center-title mt-2 mb-4">會員設定</h4>
-                    <form>
+                    <form id="formUserEdit">
                         <div class="mb-1">
-                            <label for="recipient-name" class="col-form-label">姓名：</label>
-                            <input type="text" class="form-control" value="王大明">
+                            <label for="" class="col-form-label">姓名：</label>
+                            <input type="text" class="form-control" name="user_name" id="user_name" value="">
                         </div>
                         <div class="mb-1">
-                            <label for="recipient-name" class="col-form-label">性別</label>
+                            <label for="" class="col-form-label">性別</label>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="">
+                                <input class="form-check-input" type="radio" name="user_gender" value="男性">
                                 <label class="form-check-label" for="">
-                                    男
+                                    男性
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="" checked>
+                                <input class="form-check-input" type="radio" name="user_gender" value="女性">
                                 <label class="form-check-label" for="">
-                                    女
+                                    女性
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="" checked>
+                                <input class="form-check-input" type="radio" name="user_gender" value="其他">
                                 <label class="form-check-label" for="">
                                     其他
                                 </label>
@@ -167,24 +168,25 @@
                         </div>
                         <div class="mb-1">
                             <label for="" class="col-form-label">電子信箱</label>
-                            <input type="email" class="form-control" value="gn20030523@gmail.com">
+                            <input type="email" class="form-control" name="user_email" id="user_email" value="">
                         </div>
                         <div class="mb-1">
                             <label for="" class="col-form-label">行動電話</label>
-                            <input type="tel" class="form-control" id="phone1" value="0900-123456">
+                            <input type="tel" class="form-control" name="user_phone1" id="user_phone1" value="">
                         </div>
                         <div class="mb-1">
                             <label for="" class="col-form-label">其他連絡電話</label>
-                            <input type="tel" class="form-control" id="phone2">
+                            <input type="tel" class="form-control" name="user_phone2" id="user_phone2">
                         </div>
                         <div class="mb-1">
                             <label for="" class="col-form-label">地址</label>
-                            <input type="text" class="form-control" id="adress">
+                            <input type="text" class="form-control" name="user_address" id="user_address">
+                        </div>
+                        <div class="container mt-5 d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary me-2" id="btnLeaveEdit">離開</button>
+                            <button type="button" class="btn btn-success" id="btnEditUserInfo">儲存</button>
                         </div>
                     </form>
-                    <div class="container mt-5 d-flex justify-content-center">
-                        <button type="button" class="btn btn-success">確定修改</button>
-                    </div>
                 </div>
                 <div class="tab-pane fade show active" id="member-pets" role="tabpanel"
                     aria-labelledby="member-pets-list">
@@ -253,7 +255,7 @@
                         </a>
 
                     </div>
-                    
+
                     <!-- 會員查看我的寵物資料Modal -->
                     <!-- Modal -->
                     <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="showModalLabel"
@@ -261,14 +263,15 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="showModalLabel">重新編輯寵物資料</h1>
+                                    <h1 class="modal-title fs-5" id="showModalLabel">編輯我的寵物</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form id="formMyPetEdit">
                                         <div class="d-flex justify-content-center">
-                                            <img class="pet-headphoto" name="pet_headphoto" id="pet_headphoto" src="" alt="">
+                                            <img class="pet-headphoto" name="pet_headphoto" id="pet_headphoto" src=""
+                                                alt="">
                                         </div>
                                         <div class="d-flex justify-content-end mt-3">
                                             <input type="file" id="petImageChange" name="pet_headphoto">
@@ -277,12 +280,12 @@
                                         <div class="mb-1">
                                             <label for="pet-name" class="col-form-label">寵物名字</label>
                                             <input type="text" class="form-control" id="pet_name" name="pet_name"
-                                                value="" >
+                                                value="">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">寵物種類</label>
-                                            <select class="form-select" aria-label="Default select example" id="pet_species"
-                                                name="pet_species" >
+                                            <select class="form-select" aria-label="Default select example"
+                                                id="pet_species" name="pet_species">
                                                 <option value="">請選擇</option>
                                                 <option value="狗">狗</option>
                                                 <option value="貓">貓</option>
@@ -291,17 +294,17 @@
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">品種</label>
                                             <input type="text" class="form-control" id="pet_variety" name="pet_variety"
-                                                value="柴犬" >
+                                                value="">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">體重</label>
                                             <input type="number" class="form-control" id="pet_weight" name="pet_weight"
-                                                value="15.8" >
+                                                value="15.8">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">毛髮類型</label>
                                             <select class="form-select" aria-label="Default select example" id="pet_fur"
-                                                name="pet_fur" >
+                                                name="pet_fur">
                                                 <option value="">請選擇</option>
                                                 <option value="長毛">長毛</option>
                                                 <option value="多層毛">多層毛</option>
@@ -310,21 +313,21 @@
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">生日</label>
-                                            <input type="text" class="form-control" id="pet_birthday"
-                                                name="pet_birthday" value="2024/08/01" >
+                                            <input type="date" class="form-control" id="pet_birthday"
+                                                name="pet_birthday" value="">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">性別</label>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" id="male" 
-                                                    name="pet_gender" value="公" >
+                                                <input class="form-check-input" type="radio" id="male" name="pet_gender"
+                                                    value="公">
                                                 <label class="form-check-label" for="male">
                                                     公
                                                 </label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio"
-                                                    id="female" name="pet_gender" value="母" >
+                                                <input class="form-check-input" type="radio" id="female"
+                                                    name="pet_gender" value="母">
                                                 <label class="form-check-label" for="female">
                                                     母
                                                 </label>
@@ -333,7 +336,7 @@
                                         <div class="mb-1">
                                             <label for="recipient-name" class="col-form-label">節育狀態</label>
                                             <select class="form-select" aria-label="Default select example"
-                                                id="neutered" name="neutered" >
+                                                id="neutered" name="neutered">
                                                 <option value="">請選擇</option>
                                                 <option value="已結紮">已結紮</option>
                                                 <option value="未結紮">未結紮</option>
@@ -343,13 +346,14 @@
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">備註</label>
                                             <textarea class="form-control" rows="3" name="others" id="others"
-                                                placeholder="若有其他特殊狀況可以在此告知我們" ></textarea>
+                                                placeholder="若有其他特殊狀況可以在此告知我們"></textarea>
                                         </div>
                                         <hr>
                                         <div class="text-center">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">離開</button>
-                                            <button type="button" class="btn btn-success" id="btnEditMyPet" data-pid="">儲存</button>
+                                            <button type="button" class="btn btn-success" id="btnEditMyPet"
+                                                data-pid="">儲存</button>
                                         </div>
                                     </form>
                                 </div>
@@ -371,7 +375,8 @@
                                 <div class="modal-body">
                                     <form id="formAddPet" method="post">
                                         <div class="d-flex justify-content-center">
-                                            <img class="pet-headphoto" src="../img/10_member/petheadshot_none.png" alt="">
+                                            <img class="pet-headphoto" src="../img/10_member/petheadshot_none.png"
+                                                alt="">
                                         </div>
                                         <div class="d-flex justify-content-end mt-3">
                                             <input type="file" id="petImageUpload" name="pet_headphoto">
@@ -473,6 +478,7 @@
                     <!-- 新增後通知框Modal end-->
                 </div>
 
+
                 <div class="tab-pane fade" id="member-record" role="tabpanel" aria-labelledby="member-record-list">
                     <h4 class="member-center-title mt-2 mb-4">歷史訂單</h4>
                     <div class="mb-1">
@@ -484,23 +490,74 @@
                         <button class="btn btn-info">旅館</button>
                         <button class="btn btn-info">商品</button>
                     </div>
-                    <div class="m-2 container justify-content-center" style="border: 1px solid black;">
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
+                    <div class="m-2 container justify-content-center">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr class="table-active">
+                                    <th>流水編號：B20240725001</th>
+                                    <th>預約成立日期：2024/07/20</th>
+                                    <th>店別：台中店</th>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" class="align-middle">小白</td>
+                                    <td>日期：2024/08/09 星期五 12:00 p.m.</td>
+                                    <td>時間：1小時</td>
+                                </tr>
+                                <tr>
+                                    <td>方案：小美容 + 藥浴</td>
+                                    <td rowspan="2" class="align-middle">總金額：NT$1,000</td>
+                                </tr>
+                                <tr>
+                                    <td>狗 | 小型犬 | 短毛</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="m-2 container justify-content-center" style="border: 1px solid black;">
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
+                    <div class="m-2 container justify-content-center">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr class="table-active">
+                                    <th>流水編號：B20240725001</th>
+                                    <th>預約成立日期：2024/07/20</th>
+                                    <th>店別：台中店</th>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" class="align-middle">小白</td>
+                                    <td>日期：2024/08/09 星期五 12:00 p.m.</td>
+                                    <td>時間：1小時</td>
+                                </tr>
+                                <tr>
+                                    <td>方案：小美容 + 藥浴</td>
+                                    <td rowspan="2" class="align-middle">總金額：NT$1,000</td>
+                                </tr>
+                                <tr>
+                                    <td>狗 | 小型犬 | 短毛</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="m-2 container justify-content-center" style="border: 1px solid black;">
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
-                        <p>訂單訂單訂單訂單訂單訂單訂單</p>
+                    <div class="m-2 container justify-content-center">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr class="table-active">
+                                    <th>流水編號：B20240725001</th>
+                                    <th>預約成立日期：2024/07/20</th>
+                                    <th>店別：台中店</th>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" class="align-middle">小白</td>
+                                    <td>日期：2024/08/09 星期五 12:00 p.m.</td>
+                                    <td>時間：1小時</td>
+                                </tr>
+                                <tr>
+                                    <td>方案：小美容 + 藥浴</td>
+                                    <td rowspan="2" class="align-middle">總金額：NT$1,000</td>
+                                </tr>
+                                <tr>
+                                    <td>狗 | 小型犬 | 短毛</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -629,9 +686,10 @@
     <script src="../js/member_login.js"></script>
     <!-- 引用新增寵物功能的JS檔 -->
     <script src="../js/member_add_pet.js"></script>
-    <!-- 引用我的寵物卡片功能的S檔 -->
+    <!-- 引用我的寵物卡片功能的JS檔 -->
     <script src="../js/mypet_info_card.js"></script>
-
+    <!-- 引用我的會員資料的JS -->
+    <script src="../js/member_userinfo.js"></script>
 
 </body>
 
