@@ -567,37 +567,45 @@
                     aria-labelledby="member-password-reset-list">
                     <h4 class="member-center-title mt-2 mb-4">重設密碼</h4>
                     <div class="container mt-3">
-                        <form class="row g-3 needs-validation" novalidate>
+                        <form id="formResetPassword" class="row g-3 needs-validation" novalidate>
                             <div class="col-md-12">
                                 <label for="validationCustom03" class="form-label">舊的密碼：</label>
-                                <input type="password" class="form-control" id="validationCustom03" required>
+                                <input type="password" class="form-control" id="old_password" name="old_password" required
+                                    minlength="8" maxlength="16"
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$">
+                                <div class="invalid-feedback">
+                                    請輸入您原本的密碼
+                                </div>
                             </div>
                             <div class="col-md-12">
                                 <label for="" class="form-label">新的密碼：</label>
-                                <input type="password" class="form-control" id="" value="" required minlength="8"
-                                maxlength="16" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$>
+                                <input type="password" class="form-control" id="new_password" name="new_password" value="" required
+                                    minlength="8" maxlength="16"
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$">
                                 <div class="invalid-feedback">
                                     請輸入8~16個字元且包含數字、英文字母大小寫及特殊符號的密碼
                                 </div>
                                 <div class="valid-feedback">
-                                    密碼格式正確，請在下個欄位再次確認!
+                                    密碼格式正確，請在下個欄位再次確認
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <label for="" class="form-label">再次輸入新的密碼：</label>
-                                <input type="password" class="form-control" value="" required minlength="8"
-                                maxlength="16" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$>
+                                <input type="password" class="form-control" id="new_password_conf" name="new_password_conf" value=""
+                                    required minlength="8" maxlength="16"
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,16}$">
                                 <div class="invalid-feedback">
-                                    請輸入8~16個字元且包含數字、英文字母大小寫及特殊符號的密碼
+                                    確認失敗
                                 </div>
                                 <div class="valid-feedback">
                                     確認成功!
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-success" type="submit" id="btnReset">確定變更</button>
+                                <button class="btn btn-success" type="submit" id="btnResetPassword">確定變更</button>
                             </div>
                         </form>
+                        <div id="errorMessages"></div>
                         <script>
                             (function () {
                                 'use strict'
@@ -605,6 +613,19 @@
                                 Array.prototype.slice.call(forms)
                                     .forEach(function (form) {
                                         form.addEventListener('submit', function (event) {
+
+                                            var password = form.querySelector('input[name="new_password"]').value;
+                                            var confirmPassword = form.querySelector('input[name="new_password_conf"]').value;
+                                            if (password !== confirmPassword) {
+                                                // 如果不一致，設置自定義錯誤信息
+                                                var confirmPasswordField = form.querySelector('input[name="new_password_conf"]');
+                                                confirmPasswordField.setCustomValidity('密碼不匹配，請重新輸入');
+                                            } else {
+                                                // 如果一致，清除錯誤信息
+                                                var confirmPasswordField = form.querySelector('input[name="new_password_conf"]');
+                                                confirmPasswordField.setCustomValidity('');
+                                            }
+
                                             if (!form.checkValidity()) {
                                                 event.preventDefault()
                                                 event.stopPropagation()
@@ -686,7 +707,8 @@
             })()
         document.getElementById('btnEditUserInfo').onclick = (event) => {
             event.preventDefault();
-            console.log('5566');}
+            console.log('5566');
+        }
     </script>
 
     <!-- 引用登入功能的後端JS檔 -->
@@ -699,6 +721,8 @@
     <!-- 引用我的會員資料的JS -->
     <!-- <script src="../js/member_userinfo.js"></script> -->
     <script src="../js/member_edit.js"></script>
+    <!-- 引用重設密碼的js -->
+     <script src="../js/member_reset_pwd.js"></script>
 
 </body>
 

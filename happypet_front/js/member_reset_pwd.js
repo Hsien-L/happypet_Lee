@@ -1,51 +1,43 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('formResetPassword');
 
-document.getElementById('btnRegister').onclick = (event) => {
-    event.preventDefault();
+    form.addEventListener('submit', async (event) => {
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            event.preventDefault();
 
-    // 獲取表單元素
-    let form = document.getElementById('myregister');
+            const old_password = form.querySelector('input[name="old_password"]').value;
+            const new_password = form.querySelector('input[name="new_password"]').value;
+            const new_password_conf = form.querySelector('input[name="new_password_conf"]').value;
+            const uid = localStorage.getItem('uid');
 
-    // 手動觸發表單驗證
-    form.classList.add('was-validated');
+            try {
+                const response = await fetch('http://localhost/happypet_Lee/happypet_back/public/api/member_reset_password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ uid, old_password, new_password, new_password_conf }),
+                });
 
-    // 確認表單驗證成功後才執行API呼叫
-    if (form.checkValidity()) {
-        let formData = new FormData(form);
+                const result = await response.json();
 
-        fetch('http://localhost/happypet_Lee/happypet_back/public/api/member_register', {
-            method: 'post',
-            body: formData
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`伺服器錯誤(fetch回傳有問題): ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data.message) {
-                    showModel(data.message, 'success');
-
+                if (response.ok) {
+                    alert('密碼重設成功！');
+                    
+                    // 確認後跳轉至會員中心頁面
+                    window.location.href = '../10_member/member_center.html';
                 } else {
-                    showModel(data.error, 'error');
+                    alert(result.message || '密碼重設失敗，請檢查您的資料並重試。');
                 }
-            })
-            .catch(error => {
-                showModel(`發生錯誤: ${error.message}`, 'error');
-            });
-    }
-
-    function showModel(message, type) {
-        $('#myModal').modal('show');
-        alert_message.innerText = message;
-        alert_message.classList.remove('text-success', 'text-danger');
-        alert_message.classList.add(type === 'success' ? 'text-success' : 'text-danger');
-        if (type === 'success') {
-            setTimeout(() => {
-                window.location.href = '../00_index/index.html'; // 更改為你的登入頁面路徑
-            }, 3000); // 3 秒鐘後重導
+            } catch (error) {
+                console.error('Error:', error);
+                alert('密碼重設時發生錯誤，請稍後再試。');
+            }
         }
-    }
 
-
-}
+        form.classList.add('was-validated');
+    });
+});

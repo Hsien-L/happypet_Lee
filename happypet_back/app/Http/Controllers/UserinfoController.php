@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -55,6 +56,34 @@ class UserinfoController extends Controller
             // 捕捉其他異常
             Log::error("更新資料時發生錯誤: " . $e->getMessage());
             return response()->json(["error" => "資料更新失敗，再試一次"]);
+        }
+    }
+
+    function reset_password(Request $request) {
+
+        try {
+            $user = DB::table('user_info')->where('uid', $request->input('uid'))->first();
+    
+            if (!$user || !Hash::check($request->input('old_password'), $user->password)) {
+                return response()->json(["error" => "舊密碼不正確"], 400);
+            }
+    
+            $updatedData = [
+                'password' => Hash::make($request->input('new_password')),
+            ];
+    
+            $updateResult = DB::table('user_info')
+                ->where('uid', $request->input('uid'))
+                ->update($updatedData);
+    
+            if ($updateResult) {
+                return response()->json(["message" => "密碼更新成功！"]);
+            } else {
+                return response()->json(["error" => "密碼更新失敗，再試一次"], 500);
+            }
+        } catch (\Exception $e) {
+            Log::error("更新密碼時發生錯誤: " . $e->getMessage());
+            return response()->json(["error" => "伺服器錯誤，請稍後再試"], 500);
         }
     }
 }

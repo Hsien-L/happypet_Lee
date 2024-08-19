@@ -84,3 +84,6 @@ Route::post('/member_userinfo', [UserinfoController::class, 'show_userinfo']);
 
 //編輯會員資料
 Route::post('/member_userinfo_update', [UserinfoController::class, 'edit_userinfo']);
+
+//重設密碼
+Route::post('/member_reset_password', [UserinfoController::class, 'reset_password']);
