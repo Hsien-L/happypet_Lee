@@ -41,30 +41,30 @@ fetch('http://localhost/happypet_Lee/happypet_back/public/api/member_userinfo', 
 document.getElementById('btnEditUserInfo').onclick = (event) => {
     event.preventDefault();
 
-    let form = document.getElementById('formUserEdit');
-    let formData = new FormData(form);
-    formData.append('uid', 1); // 假設你的 `uid` 是 1，你可以根據情況動態設置
+    // let form = document.getElementById('formUserEdit');
+    // let formData = new FormData(form);
+    // formData.append('uid'); 
 
-    fetch('http://localhost/happypet_Lee/happypet_back/public/api/member_userinfo_update', {
-        method: 'post',
-        body: formData
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`伺服器錯誤: ${response.statusText}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.message === "資料更新成功！") {
-            alert("資料已更新");
-        } else {
-            alert("更新失敗，請稍後再試");
-        }
-    })
-    .catch(error => {
-        console.error("錯誤:", error);
-    });
+    // fetch('http://localhost/happypet_Lee/happypet_back/public/api/member_userinfo_update', {
+    //     method: 'post',
+    //     body: formData
+    // })
+    // .then(response => {
+    //     if (!response.ok) {
+    //         throw new Error(`伺服器錯誤: ${response.statusText}`);
+    //     }
+    //     return response.json();
+    // })
+    // .then(data => {
+    //     if (data.message === "資料更新成功！") {
+    //         alert("資料已更新");
+    //     } else {
+    //         alert("更新失敗，請稍後再試");
+    //     }
+    // })
+    // .catch(error => {
+    //     console.error("錯誤:", error);
+    // });
 }
 
 document.getElementById('btnLeaveEdit').onclick = function() {
