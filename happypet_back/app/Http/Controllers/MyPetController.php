@@ -11,6 +11,8 @@ class MyPetController extends Controller
 {
     public function add_pet(Request $request)
     {
+        Log::info('收到的請求數據:', $request->all());
+        
         try {
              // 確保 pet_headphoto 是一個上傳文件
             // $request->hasFile('pet_headphoto')
@@ -29,7 +31,9 @@ class MyPetController extends Controller
             }
 
         // 插入數據到數據庫
+            
             $add_pet = DB::table('pet_info')->insert([
+                'uid' => $request->input('uid'),
                 'pet_name' => $request->input('pet_name'),
                 'pet_species' => $request->input('pet_species'),
                 'pet_weight' => $request->input('pet_weight'),

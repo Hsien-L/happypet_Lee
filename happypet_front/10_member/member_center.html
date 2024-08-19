@@ -299,7 +299,7 @@
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">體重</label>
                                             <input type="number" class="form-control" id="pet_weight" name="pet_weight"
-                                                value="15.8">
+                                                value="">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">毛髮類型</label>
@@ -383,30 +383,30 @@
                                         </div>
                                         <div class="mb-1">
                                             <label for="pet-name" class="col-form-label">寵物名字</label>
-                                            <input type="text" class="form-control" id="pet-name" name="pet_name">
+                                            <input type="text" class="form-control" id="add_pet_name" name="pet_name">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">寵物種類</label>
                                             <select class="form-select" aria-label="Default select example"
-                                                name="pet_species">
-                                                <option selected>請選擇</option>
+                                                id="add_pet_species" name="pet_species">
+                                                <option selected value="">請選擇</option>
                                                 <option value="狗">狗</option>
                                                 <option value="貓">貓</option>
                                             </select>
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">品種</label>
-                                            <input type="text" class="form-control" id="pet-variety" name="pet_variety">
+                                            <input type="text" class="form-control" id="add_pet_variety" name="pet_variety">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">體重</label>
-                                            <input type="number" class="form-control" id="pet-weight" name="pet_weight">
+                                            <input type="number" class="form-control" id="add_pet_weight" name="pet_weight">
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">毛髮類型</label>
                                             <select class="form-select" aria-label="Default select example"
-                                                name="pet_fur">
-                                                <option selected>請選擇</option>
+                                                id="add_pet_fur" name="pet_fur">
+                                                <option selected value="">請選擇</option>
                                                 <option value="長毛">長毛</option>
                                                 <option value="多層毛">多層毛</option>
                                                 <option value="短毛">短毛</option>
@@ -414,7 +414,7 @@
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">生日</label>
-                                            <input type="date" class="form-control" id="pet-birthday"
+                                            <input type="date" class="form-control" id="add_pet_birthday"
                                                 name="pet_birthday">
                                         </div>
                                         <div class="mb-1">
@@ -437,7 +437,7 @@
                                         <div class="mb-1">
                                             <label for="recipient-name" class="col-form-label">節育狀態</label>
                                             <select class="form-select" aria-label="Default select example"
-                                                name="neutered">
+                                                id="add_neutered" name="neutered">
                                                 <option selected value="">請選擇</option>
                                                 <option value="已結紮">已結紮</option>
                                                 <option value="未結紮">未結紮</option>
@@ -446,7 +446,7 @@
                                         </div>
                                         <div class="mb-1">
                                             <label for="" class="col-form-label">備註</label>
-                                            <textarea class="form-control" rows="3" name="others"
+                                            <textarea class="form-control" rows="3" id="add_others" name="others"
                                                 placeholder="若有其他特殊狀況可以在此告知我們"></textarea>
                                         </div>
                                         <hr>
@@ -680,11 +680,13 @@
                         }, false)
                     })
             })()
+            
     </script>
 
     <!-- 引用登入功能的後端JS檔 -->
     <script src="../js/member_login.js"></script>
     <!-- 引用新增寵物功能的JS檔 -->
+    <!-- <script src="../js/(Error)member_add_pet.js"></script> -->
     <script src="../js/member_add_pet.js"></script>
     <!-- 引用我的寵物卡片功能的JS檔 -->
     <script src="../js/mypet_info_card.js"></script>

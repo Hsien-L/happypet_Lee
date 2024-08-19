@@ -75,7 +75,7 @@ document.getElementById('btnEditMyPet').onclick = (event) => {
     function showAddPetModal(message) {
         $('#add_or_not_Modal').modal('show');
         document.getElementById('alert_message').innerText = message;
-        if (message === "資料儲存成功！") {
+        if (message === "新資料儲存成功！"|| message === "資料已儲存") {
             setTimeout(() => {
                 window.location.href = '../10_member/member_center.html';
             }, 2000); // 2秒延遲，讓用戶能看到成功消息
@@ -87,7 +87,7 @@ document.getElementById('btnEditMyPet').onclick = (event) => {
 //查看寵物在資料庫的資料
 $('#mypet_card').on('click', '.pet_card_check_detail', function () {
     console.log($('#btnEditMyPet'));
-    console.log($(this).data('pid'));
+    // console.log($(this).data('pid'));
     // console.log($('#btnEditMyPet').data('pid'));
 
     //編輯寵物資料的按鈕要抓到該寵物的pid
